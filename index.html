@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МГА Новаци – Младинска Граѓанска Акција</title>
+<meta name="description" content="Младинска Граѓанска Акција Новаци – младите од Новаци во локалните одлуки. Младински центар Новаци, активности, проекти, документи и контакт.">
+<meta property="og:title" content="МГА Новаци – Младинска Граѓанска Акција">
+<meta property="og:description" content="Младите од Новаци во локалните одлуки.">
+<meta property="og:type" content="website">
+<link rel="icon" href="slike/mga-novaci-seal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Дизајн систем МГА Новаци – токени ===== */
+:root{
+  --night:#16171a; --night-raised:#1e1f23; --night-line:#2e2f34;
+  --mint:#5ce5b7; --chalk:#f2f1ec; --fog:#a6a8ae; --on-mint:#16171a;
+  --surface:#16171a; --surface-raised:#1e1f23; --line:#2e2f34; --line-strong:#6b6d73;
+  --ink:#f2f1ec; --ink-muted:#a6a8ae; --accent:#5ce5b7; --accent-text:#5ce5b7; --accent-soft:#163a2f; --focus:#5ce5b7;
+  --display:Unbounded,"Arial Black","Segoe UI",sans-serif; --sans:Manrope,"Segoe UI",Arial,sans-serif;
+  --r-sm:6px; --r-md:16px; --pill:999px; --max:1160px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--sans);background:var(--surface);color:var(--ink);font-size:17px;line-height:1.6}
+a{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+section{padding:96px 0;position:relative}
+.alt{background:var(--night-raised)}
+
+/* Типографија */
+.hl{font-family:var(--display);font-weight:800;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+.hl em{font-style:normal;color:var(--mint)}
+.hl-hero{font-size:clamp(2.4rem,6.4vw,5rem);line-height:.98;letter-spacing:-.02em}
+.hl-1{font-size:clamp(1.8rem,3.8vw,2.8rem);margin-bottom:20px}
+.hl-2{font-size:1.2rem;font-weight:700;line-height:1.2;margin-bottom:8px}
+.lead{font-size:1.2rem;line-height:1.6;color:var(--fog);max-width:40em}
+.lead b{color:var(--chalk)}
+.label{font-family:var(--display);font-weight:700;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--fog)}
+.muted{color:var(--fog)}
+
+/* Таг: пилула со точка */
+.tag{display:inline-flex;align-items:center;gap:.7em;height:2.4em;padding:0 1.25em;border-radius:var(--pill);border:2px solid var(--accent-text);color:var(--accent-text);font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;margin-bottom:22px}
+.tag::before{content:"";width:.5em;height:.5em;border-radius:50%;background:currentColor}
+
+/* Копчиња */
+.btn{font-family:var(--sans);font-weight:800;font-size:1rem;min-height:2.9em;padding:.65em 1.6em;border-radius:var(--pill);border:2px solid transparent;display:inline-flex;align-items:center;gap:.6em;text-decoration:none;cursor:pointer;transition:filter .15s}
+.btn-primary{background:var(--accent);color:var(--on-mint)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-secondary{color:var(--ink);border-color:var(--line-strong)}
+.btn-secondary:hover{border-color:var(--accent-text)}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Место за пополнување */
+.todo{background:var(--accent-soft);border:1px dashed var(--mint);color:var(--chalk);padding:0 6px;border-radius:var(--r-sm);font-weight:500}
+
+/* Зрно (grain) на уметничките површини */
+.grain{position:relative;isolation:isolate;overflow:hidden}
+.grain::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:5;opacity:.10;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.waves{position:absolute;left:0;width:100%;pointer-events:none;z-index:0}
+.waves svg{display:block;width:100%;height:100%}
+.over{position:relative;z-index:1}
+
+/* Заглавие */
+header{position:sticky;top:0;z-index:50;background:rgba(22,23,26,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .3s ease}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px;transition:height .3s ease}
+.lockup{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.seal{width:50px;height:50px;border-radius:50%;flex:none;overflow:hidden;display:block}
+.seal img{width:100%;height:100%;object-fit:contain;display:block}
+.lockup-name{font-weight:800;font-size:.92rem;line-height:1.2}
+.lockup-place{display:block;font-family:var(--display);font-weight:700;font-size:.6rem;letter-spacing:.2em;color:var(--fog);margin-top:3px}
+nav ul{display:flex;align-items:center;gap:2px;list-style:none;position:relative}
+nav a{color:var(--ink);text-decoration:none;font-weight:700;font-size:.9rem;padding:8px 12px;border-radius:var(--pill)}
+nav a:hover{color:var(--mint)}
+nav .btn{padding:.45em 1.2em;min-height:auto;margin-left:8px;color:var(--on-mint)}
+nav .btn:hover{color:var(--on-mint)}
+.menu-btn{display:none;background:none;border:2px solid var(--line-strong);border-radius:var(--pill);width:52px;height:44px;cursor:pointer;place-items:center}
+
+/* Херој */
+.hero{padding:120px 0 260px;background:var(--night)}
+.hero .lead{margin:26px 0 36px}
+.hero-handle{position:absolute;top:28px;right:24px}
+
+/* Статистики */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:64px}
+.stat{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:16px;padding:18px 22px;background:var(--night-raised);border:1px solid var(--night-line);border-radius:var(--r-md)}
+.stat b{font-family:var(--display);font-weight:800;font-size:2rem;line-height:.9;color:var(--mint);letter-spacing:-.02em}
+.stat span{font-weight:700;line-height:1.3}
+
+/* Мрежи */
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.card{background:var(--surface-raised);border:1px solid var(--line);border-radius:var(--r-md);padding:28px}
+.alt .card{background:var(--surface)}
+.card p{color:var(--fog)}
+.head-row{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+
+/* Нумерирана листа */
+.list{list-style:none;display:grid}
+.list li{display:grid;grid-template-columns:3.4em 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.list .num{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:.9;color:var(--accent-text)}
+.list p{color:var(--fog)}
+
+/* Младински центар */
+.split{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+.info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);padding-top:18px;margin-top:32px}
+.info div{padding:0 16px;border-left:1px solid var(--line)}
+.info div:first-child{padding-left:0;border-left:0}
+.info .k{font-family:var(--display);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-text);margin-bottom:6px}
+.info .v{font-family:var(--display);font-weight:800;font-size:1rem;line-height:1.25}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pill{border:1px solid var(--line-strong);border-radius:var(--pill);padding:8px 16px;font-weight:700;font-size:.9rem}
+
+/* Настани */
+.list li.event{display:grid;grid-template-columns:120px 1fr;gap:24px;align-items:start}
+.event .date{font-family:var(--display);font-weight:800;font-size:1.05rem;line-height:1.2;color:var(--mint)}
+
+/* Цитат */
+.quote{text-align:center;max-width:860px;margin:0 auto}
+.quote .mark{font-family:var(--display);font-weight:800;font-size:7rem;line-height:1;height:.55em;color:var(--mint);overflow:visible}
+.quote p.hl{font-size:clamp(1.4rem,3vw,2.1rem);line-height:1.25;margin:20px 0}
+.quote .rule{width:56px;height:2px;background:var(--mint);margin:0 auto 16px}
+
+/* Документи */
+.docs{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.doc{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:var(--surface-raised)}
+.doc:last-child{border-bottom:0}
+.doc .yr{font-family:var(--display);font-weight:800;color:var(--accent-text);font-size:.95rem;min-width:3.4em}
+.doc strong{display:block}
+.doc small{color:var(--fog)}
+.doc a{font-weight:800;text-decoration:none;white-space:nowrap}
+.doc .soon{font-family:var(--display);font-weight:700;font-size:.66rem;letter-spacing:.16em;color:var(--fog);text-transform:uppercase}
+
+/* Бенд на дното */
+.band{display:block;background:var(--mint);color:var(--on-mint);padding:26px 0;text-decoration:none;overflow:hidden}
+.marquee{overflow:hidden}
+.track{display:flex;align-items:center;gap:40px;width:max-content;animation:marquee 60s linear infinite}
+.band:hover .track{animation-play-state:paused}
+.band .slogan{font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,2.4vw,1.6rem);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.track i{width:12px;height:12px;border-radius:50%;background:var(--night);flex:none}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* Контакт и подножје */
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:14px 24px;margin-top:8px}
+.contact dt{font-family:var(--display);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-text);padding-top:5px}
+.contact dd{font-weight:700}
+footer{background:#111214;border-top:1px solid var(--line);padding:56px 0 32px;color:var(--fog);font-size:.92rem}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+footer h3{font-family:var(--display);font-weight:700;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--chalk);margin-bottom:14px}
+footer a{color:var(--fog);text-decoration:none}
+footer a:hover{color:var(--mint)}
+.foot-links{list-style:none;display:grid;gap:6px}
+.bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line);font-size:.84rem}
+.bottom b{color:var(--chalk)}
+
+@media (max-width:980px){
+  .menu-btn{display:grid}
+  nav ul{position:absolute;top:100%;left:0;right:0;background:var(--night);flex-direction:column;align-items:stretch;padding:12px 24px 24px;border-bottom:1px solid var(--line);visibility:hidden;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease,visibility 0s .3s}
+  nav ul.open{visibility:visible;opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease}
+  nav ul.open li{animation:up .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*55ms)}
+  nav a:not(.btn){font-size:1.15rem;padding:12px 0}
+  .nav-ind{display:none}
+  nav .btn{margin:8px 0 0;justify-content:center}
+  .split,.foot{grid-template-columns:1fr}
+  .hero-handle{display:none}
+  section{padding:72px 0}
+}
+@media (max-width:560px){
+  .list li.event{grid-template-columns:1fr;gap:6px}
+  .info{grid-template-columns:1fr;gap:14px}
+  .info div{padding:0;border:0}
+  .event{grid-template-columns:1fr;gap:6px}
+  .doc{grid-template-columns:1fr auto}
+  .doc .yr{display:none}
+}
+
+/* ===== Анимации ===== */
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.hero-seal{width:clamp(220px,26vw,340px);aspect-ratio:1;border-radius:50%;box-shadow:0 30px 60px rgba(0,0,0,.45);animation:float 9s ease-in-out infinite, pop 1.2s cubic-bezier(.2,.8,.2,1) both .5s}
+.hero-seal img{width:100%;height:100%;display:block}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -14px}}
+@keyframes pop{from{opacity:0;scale:.85}to{opacity:1;scale:1}}
+.hl-hero .line{display:block;overflow:hidden}
+.hero .tag,.hero .lead,.hero .btns,.hero .stat{animation:up .9s cubic-bezier(.2,.8,.2,1) both}
+.hl-hero .line:nth-child(1){animation-delay:.12s}.hl-hero .line:nth-child(2){animation-delay:.24s}
+.hero .lead{animation-delay:.38s}.hero .btns{animation-delay:.5s}
+.hero .stat{animation-fill-mode:backwards}.hero .stat:nth-child(1){animation-delay:.62s}.hero .stat:nth-child(2){animation-delay:.72s}.hero .stat:nth-child(3){animation-delay:.82s}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.tag::before{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.card,.pill,.stat{transition:transform .35s ease,border-color .35s ease,opacity .8s ease}
+.card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+.pill:hover{border-color:var(--mint);color:var(--mint)}
+.btn span[aria-hidden]{transition:transform .25s ease}
+.btn:hover span[aria-hidden]{transform:translateX(4px)}
+nav a:not(.btn){position:relative}
+nav a:not(.btn)::after{content:"";position:absolute;left:12px;right:12px;bottom:4px;height:2px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+nav a:not(.btn):hover::after{transform:scaleX(1)}
+.doc{transition:background .3s ease}
+.doc:hover{background:var(--accent-soft)}
+.list .num{transition:transform .4s ease}
+.list li:hover .num{transform:translateX(6px)}
+.wave-dot{transform-box:fill-box;transform-origin:center;animation:dot 5s ease-in-out infinite}
+@keyframes dot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr}.hero-seal{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ===== Интерактивност ===== */
+.progress{position:absolute;left:0;top:0;height:3px;width:100%;background:var(--mint);transform-origin:left;transform:scaleX(0);z-index:2}
+header.scrolled{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+header.scrolled .nav{height:62px}
+.nav-ind{position:absolute;bottom:2px;height:2px;background:var(--mint);border-radius:2px;left:0;width:0;opacity:0;transition:left .35s cubic-bezier(.2,.8,.2,1),width .35s cubic-bezier(.2,.8,.2,1),opacity .3s}
+nav a.active{color:var(--mint)}
+nav a:not(.btn)::after{display:none}
+.bars{display:grid;gap:5px;width:20px}
+.bars i{display:block;height:2px;border-radius:2px;background:var(--ink);transition:transform .35s ease,opacity .25s ease}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] .bars i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.wi{display:inline-block;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0)*75ms)}
+.words.in .wi{transform:none}
+.caret{display:inline-block;width:.07em;height:.82em;background:var(--mint);margin-left:.06em;vertical-align:-.04em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.stat{cursor:pointer;user-select:none}
+.stat:hover{transform:translateY(-4px);border-color:var(--mint)}
+.stat b.done{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.18)}}
+button.pill{background:none;color:var(--ink);font:inherit;font-weight:700;font-size:.9rem;cursor:pointer}
+button.pill[aria-pressed="true"]{background:var(--mint);color:var(--on-mint);border-color:var(--mint)}
+.pill-panel{margin-top:18px;padding:20px 24px;border:1px solid var(--line);border-left:3px solid var(--mint);border-radius:var(--r-md);background:var(--night);min-height:118px}
+.pill-panel .pp-title{margin:8px 0 4px}
+.pill-panel .pp-text{color:var(--fog)}
+.pill-panel.swap .pp-title,.pill-panel.swap .pp-text{animation:up .5s cubic-bezier(.2,.8,.2,1) both}
+.pill-panel.swap .pp-text{animation-delay:.08s}
+.magnetic{transition:transform .25s ease,filter .15s}
+.hero .waves{transition:transform 1.2s cubic-bezier(.2,.8,.2,1);transform:translate(calc(var(--mx,0)*14px),calc(var(--my,0)*10px))}
+.hero-seal{transform:translate(calc(var(--mx,0)*-22px),calc(var(--my,0)*-16px));transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.to-top{position:fixed;right:22px;bottom:22px;z-index:60;width:52px;height:52px;border-radius:50%;border:0;background:var(--night-raised);color:var(--mint);cursor:pointer;display:grid;place-items:center;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.to-top circle{fill:none;stroke-width:3}
+.to-top .ring-bg{stroke:var(--night-line)}
+.to-top .ring{stroke:var(--mint);stroke-dasharray:132;stroke-dashoffset:132;stroke-linecap:round}
+.to-top span{font-weight:800;font-size:1.2rem;position:relative}
+.to-top:hover{color:var(--chalk)}
+@media (prefers-reduced-motion:reduce){.wi{transform:none}.caret{display:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="wrap nav">
+    <a class="lockup" href="#" aria-label="МГА Новаци – почетна">
+      <!-- ЛОГО: стави го печатот во папката slike со име mga-novaci-seal.png -->
+      <span class="seal"><img src="slike/mga-novaci-seal.png" alt="" onerror="this.remove()"></span>
+      <span class="lockup-name">Младинска<br>Граѓанска Акција<span class="lockup-place">НОВАЦИ</span></span>
+    </a>
+    <nav aria-label="Главна навигација">
+      <button class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Мени"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span></button>
+      <ul id="menu">
+        <li><a href="#za-nas">За нас</a></li>
+        <li><a href="#centar">Младински центар</a></li>
+        <li><a href="#aktivnosti">Активности</a></li>
+        <li><a href="#proekti">Проекти</a></li>
+        <li><a href="#dokumenti">Документи</a></li>
+        <li><a href="#kontakt">Контакт</a></li>
+        <li><a class="btn btn-primary magnetic" href="#vkluci-se">Вклучи се</a></li>
+        <li class="nav-ind" aria-hidden="true"></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ПОЧЕТНА -->
+<section class="hero grain">
+  <div class="waves" data-shape="flow" data-seed="7" style="bottom:-40px;height:300px"></div>
+  <span class="label hero-handle over">МГА НОВАЦИ</span>
+  <div class="wrap over">
+    <div class="hero-grid">
+    <div>
+    <span class="tag">Општина Новаци</span>
+    <h1 class="hl hl-hero words" aria-label="Глас на младите на секое ниво"><span class="line" aria-hidden="true">Глас на младите</span><span class="line" aria-hidden="true">на <em class="rotator"><span class="rot-text">секое ниво</span><span class="caret"></span></em></span></h1>
+    <p class="lead">Ги вклучуваме младите од Новаци и селата во <b>локалните одлуки</b> – преку работилници, јавни дебати, спорт, акции во заедницата и предлози до Советот на општината.</p>
+    <div class="btns">
+      <a class="btn btn-primary magnetic" href="#vkluci-se">Вклучи се <span aria-hidden="true">→</span></a>
+      <a class="btn btn-secondary" href="#centar">Младинскиот центар</a>
+    </div>
+    </div>
+    <div class="hero-seal" aria-hidden="true"><img src="slike/mga-novaci-seal.png" alt=""></div>
+    </div>
+    <div class="stats">
+      <div class="stat" role="button" tabindex="0" title="Кликни за повторно броење"><b data-count="50">50+</b><span>активни членови</span></div>
+      <div class="stat" role="button" tabindex="0" title="Кликни за повторно броење"><b data-count="30">30+</b><span>активности</span></div>
+      <div class="stat" role="button" tabindex="0" title="Кликни за повторно броење"><b data-count="100">100+</b><span>испиени шољи кафе</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ЗА НАС -->
+<section id="za-nas">
+  <div class="wrap">
+    <span class="tag">За нас</span>
+    <div class="split">
+      <div>
+        <h2 class="hl hl-1">Млади што градат <em>дома</em></h2>
+        <p class="lead">МГА Новаци е локалниот огранок на <b>Младинска граѓанска акција</b> во Општина Новаци и членка на <b>Националниот младински совет на Македонија (НМСМ)</b>. Работиме за младите од градот и од селата да бидат слушнати, информирани и вклучени.</p>
+      </div>
+      <div class="grid">
+        <div class="card"><h3 class="hl hl-2">Мисија</h3><p>Да создаваме простор и можности младите да учат, да се изразуваат и активно да учествуваат во одлуките што ги засегаат.</p></div>
+        <div class="card"><h3 class="hl hl-2">Визија</h3><p>Општина Новаци во која младите се вклучени и сакаат да ја градат својата иднина овде.</p></div>
+      </div>
+    </div>
+
+    <h3 class="hl hl-2" style="margin:64px 0 8px">Што правиме</h3>
+    <ol class="list">
+      <li><span class="num">01</span><div><h4 class="hl hl-2">Учество во локалната власт</h4><p>Обуки за Локалниот младински совет, јавни дебати и предлози до Советот на Општина Новаци.</p></div></li>
+      <li><span class="num">02</span><div><h4 class="hl hl-2">Неформално образование</h4><p>Работилници за дигитални и практични вештини – од 3D моделирање до медиумска писменост.</p></div></li>
+      <li><span class="num">03</span><div><h4 class="hl hl-2">Култура, спорт и дружење</h4><p>Турнири, квизови, ликовни конкурси, филмски вечери и соработка со КУД „Везилка“ – Новаци.</p></div></li>
+      <li><span class="num">04</span><div><h4 class="hl hl-2">Волонтерство и заедница</h4><p>Еко-акции, екскурзии и меѓународна размена на млади и волонтери.</p></div></li>
+    </ol>
+
+    <h3 class="hl hl-2" style="margin:64px 0 18px">Тим и органи</h3>
+    <div class="grid g3">
+      <div class="card"><span class="label">Претседател</span><p class="hl hl-2" style="margin-top:12px">Андреј Наумовски</p></div>
+      <div class="card"><span class="label">Координаторка на центарот</span><p class="hl hl-2" style="margin-top:12px">Андреа Китановска</p></div>
+      <div class="card"><span class="label">Собрание</span><p style="margin-top:12px">Сите членови. Ја донесува програмата и годишниот извештај.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- МЛАДИНСКИ ЦЕНТАР -->
+<section id="centar" class="alt grain">
+  <div class="wrap split over">
+    <div>
+      <span class="tag">Младински центар Новаци</span>
+      <h2 class="hl hl-1">Простор за младите, <em>отворен за сите</em></h2>
+      <p class="lead">Место каде младите од сите села во општината доаѓаат да научат нешто ново, да тренираат, да се дружат и да ги остварат своите идеи. <b>Сите активности се бесплатни.</b></p>
+      <div class="pills" role="group" aria-label="Активности во центарот">
+        <button type="button" class="pill pick" aria-pressed="true" data-desc="Учиме да моделираме во 3D – од прва скица до готов модел.">3D моделирање</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Како работи Локалниот младински совет и како младите да предлагаат до Општината.">Обуки за ЛМС</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Спортски турнири за екипи од целата општина. Собери екипа и пријави се!">Турнири</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Квиз вечери за општо знаење – дружење, натпревар и награди.">Квизови</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Конкурси за цртање и уметност за млади со идеи и талент.">Ликовни конкурси</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Традиционални ора и сплетови, пеење и свирење – отворени проби во центарот.">Проби на КУД „Везилка“</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Едукативни патувања и посети надвор од Новаци.">Екскурзии</button><button type="button" class="pill pick" aria-pressed="false" data-desc="Акции за почиста околина и волонтерски иницијативи низ селата.">Еко-акции</button>
+      </div>
+      <div class="pill-panel" aria-live="polite"><span class="label">Кликни на активност</span><p class="hl hl-2 pp-title">3D моделирање</p><p class="pp-text">Учиме да моделираме во 3D – од прва скица до готов модел.</p></div>
+      <div class="info">
+        <div><p class="k">Каде</p><p class="v">Новаци, до општинската зграда</p></div>
+        <div><p class="k">Кога</p><p class="v">пон–пет<br>12:00–20:00 ч.</p></div>
+        <div><p class="k">За кого</p><p class="v">Млади 15–29 г.</p></div>
+      </div>
+    </div>
+    <div class="card" style="background:var(--night)">
+      <span class="label">Програма до 31.12.2026</span>
+      <p class="lead" style="font-size:1.05rem;margin-top:12px">Целата програма и точните термини ги објавуваме на Instagram.</p>
+      <a class="btn btn-primary" style="margin-top:22px" href="https://www.instagram.com/mga_novaci/" target="_blank" rel="noopener">@mga_novaci <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- АКТИВНОСТИ -->
+<section id="aktivnosti">
+  <div class="wrap">
+    <div class="head-row">
+      <div><span class="tag">Активности</span><h2 class="hl hl-1" style="margin:0">Што следува</h2></div>
+      <a class="btn btn-secondary" href="https://www.instagram.com/mga_novaci/" target="_blank" rel="noopener">Сите настани</a>
+    </div>
+    <ol class="list">
+      <li class="event"><span class="date">Ноември 2026</span><div><h3 class="hl hl-2">Обука за Локален младински совет</h3><p>Како функционира Советот на општината и како младите да предлагаат.</p></div></li>
+      <li class="event"><span class="date">Ноември 2026</span><div><h3 class="hl hl-2">Обука за 3D моделирање</h3><p>Практична работа од прва идеја до готов модел.</p></div></li>
+      <li class="event"><span class="date">Декември 2026</span><div><h3 class="hl hl-2">Добредојде, волонтеру од САД</h3><p>Заеднички активности, разговори на англиски и размена на искуства.</p></div></li>
+      <li class="event"><span class="date">Секоја недела</span><div><h3 class="hl hl-2">Проби на КУД „Везилка“</h3><p>Традиционални ора и сплетови во Младинскиот центар.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ПОДКАСТ -->
+<section class="alt grain" style="padding-bottom:220px">
+  <div class="waves" data-shape="converge" data-seed="3" style="bottom:0;height:170px"></div>
+  <div class="wrap quote over">
+    <span class="tag">Подкаст</span>
+    <p class="hl"><em>Младинско Ехо</em> – разговори со луѓе од Новаци што инспирираат</p>
+    <div class="rule"></div>
+    <p class="muted">Епизоди од 15–20 минути со млади спортисти, пејачи, градоначалникот и сите што создаваат нешто вредно во општината.</p>
+  </div>
+</section>
+
+<!-- ПРОЕКТИ -->
+<section id="proekti">
+  <div class="wrap">
+    <span class="tag">Проекти</span>
+    <h2 class="hl hl-1">Проекти и <em>партнери</em></h2>
+    <div class="grid g3" style="margin-top:28px">
+      <div class="card">
+        <span class="label">2026 · Тековен</span>
+        <h3 class="hl hl-2" style="margin-top:10px">Програма на Младинскиот центар</h3>
+        <p>Работилници, турнири и културни активности за млади до крајот на 2026.</p>
+        <p style="margin-top:14px;font-size:.9rem">Поддржано од: <b style="color:var(--chalk)">Општина Новаци</b></p>
+      </div>
+      <div class="card">
+        <span class="label">2026 · Тековен</span>
+        <h3 class="hl hl-2" style="margin-top:10px">МГА Новаци × НМСМ</h3>
+        <p>Соработка со Националниот младински совет за поголемо учество на младите на локално ниво.</p>
+      </div>
+      <div class="card">
+        <span class="label">2026 · Медиум</span>
+        <h3 class="hl hl-2" style="margin-top:10px">Подкаст „Младинско Ехо“</h3>
+        <p>Младински медиум кој ги раскажува приказните на луѓето од општината.</p>
+      </div>
+    </div>
+    <p class="label" style="margin-top:48px">Соработуваме со</p>
+    <div class="pills"><span class="pill">НМСМ</span><span class="pill">Општина Новаци</span><span class="pill">КУД „Везилка“ – Новаци</span></div>
+  </div>
+</section>
+
+<!-- ДОКУМЕНТИ -->
+<section id="dokumenti" class="alt">
+  <div class="wrap">
+    <span class="tag">Документи</span>
+    <h2 class="hl hl-1">Отчетни и <em>транспарентни</em></h2>
+    <p class="lead" style="margin-bottom:32px">Нашите акти и извештаи се јавни. Секој може да види како работиме и како се трошат средствата.</p>
+    <!-- ИЗМЕНИ: качи PDF во dokumenti/ и замени „Наскоро“ со <a href="dokumenti/statut.pdf" target="_blank">Преземи →</a> -->
+    <div class="docs">
+      <div class="doc"><span class="yr">—</span><div><strong>Статут</strong><small>Цели, органи и членство</small></div><span class="soon">Наскоро</span></div>
+      <div class="doc"><span class="yr">2026</span><div><strong>Програма за работа</strong><small>Планирани активности за годината</small></div><span class="soon">Наскоро</span></div>
+      <div class="doc"><span class="yr">2025</span><div><strong>Годишен извештај за работа</strong><small>Што постигнавме минатата година</small></div><span class="soon">Наскоро</span></div>
+      <div class="doc"><span class="yr">2025</span><div><strong>Финансиски извештај</strong><small>Приходи, расходи и финансиери</small></div><span class="soon">Наскоро</span></div>
+      <div class="doc"><span class="yr">—</span><div><strong>Кодекс и политика за заштита на децата</strong><small>Како работиме со малолетни учесници</small></div><span class="soon">Наскоро</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ВКЛУЧИ СЕ -->
+<section id="vkluci-se" class="grain" style="padding-bottom:210px">
+  <div class="waves" data-shape="arch" data-seed="11" style="bottom:0;height:160px"></div>
+  <div class="wrap over">
+    <span class="tag">Вклучи се</span>
+    <h2 class="hl hl-1">Собери екипа и <em>дојди!</em></h2>
+    <div class="grid g3" style="margin-top:28px">
+      <div class="card"><span class="num hl" style="color:var(--mint);font-size:2rem">01</span><h3 class="hl hl-2" style="margin-top:12px">Стани член</h3><p>Пополни пристапница во Младинскиот центар или пиши ни.</p></div>
+      <div class="card"><span class="num hl" style="color:var(--mint);font-size:2rem">02</span><h3 class="hl hl-2" style="margin-top:12px">Волонтирај</h3><p>Помогни на настани и акции и добиј потврда за волонтерско искуство.</p></div>
+      <div class="card"><span class="num hl" style="color:var(--mint);font-size:2rem">03</span><h3 class="hl hl-2" style="margin-top:12px">Предложи идеја</h3><p>Имаш идеја за активност? Предложи ја – ќе ја оствариме заедно.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТ -->
+<section id="kontakt" class="alt">
+  <div class="wrap grid g2 contact" style="align-items:start;gap:56px">
+    <div>
+      <span class="tag">Контакт</span>
+      <h2 class="hl hl-1">Најди не</h2>
+      <dl>
+        <dt>Адреса</dt><dd>Новаци, до општинската зграда</dd>
+        <dt>Е-пошта</dt><dd><a href="mailto:mkcmladinskikulturencentar@gmail.com" style="overflow-wrap:anywhere">mkcmladinskikulturencentar@gmail.com</a></dd>
+        <dt>Работно време</dt><dd>пон–пет, 12:00–20:00 ч.</dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/mga_novaci/" target="_blank" rel="noopener">@mga_novaci</a></dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h3 class="hl hl-2">Приватност и фотографии</h3>
+      <p>Страната не собира лични податоци. Фотографиите се од наши активности, со согласност од учесниците и од родител за секој под 18 години. За отстранување фотографија – пиши ни.</p>
+      <p style="margin-top:12px;font-size:.85rem">Фото: МГА Новаци</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<a class="band" href="#vkluci-se" aria-label="Вклучи се. Дејствувај. Дружи се. Направи промена.">
+  <div class="marquee" aria-hidden="true"><div class="track">
+    <span class="slogan">Вклучи се. Дејствувај. Дружи се. Направи промена.</span><i></i>
+    <span class="slogan">Вклучи се. Дејствувај. Дружи се. Направи промена.</span><i></i>
+    <span class="slogan">Вклучи се. Дејствувај. Дружи се. Направи промена.</span><i></i>
+    <span class="slogan">Вклучи се. Дејствувај. Дружи се. Направи промена.</span><i></i>
+  </div></div>
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="lockup" href="#">
+          <span class="seal"><img src="slike/mga-novaci-seal.png" alt="" onerror="this.remove()"></span>
+          <span class="lockup-name" style="color:var(--chalk)">Младинска<br>Граѓанска Акција<span class="lockup-place">НОВАЦИ</span></span>
+        </a>
+        <p style="margin-top:18px">Членка на Националниот младински совет на Македонија.</p>
+      </div>
+      <div>
+        <h3>Мени</h3>
+        <ul class="foot-links"><li><a href="#za-nas">За нас</a></li><li><a href="#centar">Младински центар</a></li><li><a href="#aktivnosti">Активности</a></li><li><a href="#proekti">Проекти</a></li><li><a href="#dokumenti">Документи</a></li></ul>
+      </div>
+      <div>
+        <h3>Контакт</h3>
+        <ul class="foot-links"><li><a href="mailto:mkcmladinskikulturencentar@gmail.com" style="overflow-wrap:anywhere">mkcmladinskikulturencentar@gmail.com</a></li><li><a href="https://www.instagram.com/mga_novaci/" target="_blank" rel="noopener">@mga_novaci</a></li><li>Новаци, до општинската зграда</li><li>пон–пет, 12:00–20:00 ч.</li></ul>
+      </div>
+    </div>
+    <div class="bottom"><span>© <span id="yr">2026</span> МГА Новаци</span><b>#МГАНоваци</b></div>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Назад на врвот"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21" class="ring-bg"/><circle cx="24" cy="24" r="21" class="ring"/></svg><span aria-hidden="true">↑</span></button>
+
+<script>
+/* Мени на мобилен */
+const mb=document.querySelector('.menu-btn'),menu=document.getElementById('menu');
+menu.querySelectorAll('li').forEach((li,i)=>li.style.setProperty('--i',i));
+mb.addEventListener('click',()=>{const o=menu.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');mb.setAttribute('aria-expanded',false)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open')){menu.classList.remove('open');mb.setAttribute('aria-expanded',false);mb.focus()}});
+document.getElementById('yr').textContent=new Date().getFullYear();
+
+/* Бранови (Waves): нитки во мента што многу полека се движат */
+const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function rng(s){return()=>{s=(s*9301+49297)%233280;return s/233280}}
+document.querySelectorAll('.waves').forEach(el=>{
+  const shape=el.dataset.shape||'flow',r=rng(+el.dataset.seed||1),W=1200,H=400,n=9,cx=W*0.78,cy=H*0.5;
+  const make=(t)=>{
+    if(shape==='converge'){const y0=40+t*320;return `M-60 ${y0} C ${W*0.3} ${y0+(r()-.5)*120}, ${W*0.55} ${cy+(t-.5)*(60+r()*80)}, ${cx} ${cy}`}
+    if(shape==='arch'){const b=H-20-t*90,top=50+t*70+r()*40;return `M-60 ${b} C ${W*0.25} ${b}, ${W*(0.28+r()*0.05)} ${top}, ${W*0.5} ${top} S ${W*0.75} ${b}, ${W+60} ${b}`}
+    const y=60+t*260,a=30+r()*70;return `M-60 ${y} C ${W*0.25} ${y-a}, ${W*0.45} ${y+a}, ${W*0.62} ${y+(r()-.5)*50} S ${W*0.9} ${y-a*.8}, ${W+60} ${y+(r()-.5)*40}`;
+  };
+  let out='';
+  for(let i=0;i<n;i++){
+    const t=i/(n-1),thick=i%3===1,w=thick?6:1.2,op=thick?0.9:0.45;
+    const d1=make(t),d2=make(t),dur=(40+r()*40).toFixed(1);
+    const anim=still?'':`<animate attributeName="d" dur="${dur}s" values="${d1};${d2};${d1}" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1"/>`;
+    out+=`<path d="${d1}" fill="none" stroke="#5ce5b7" stroke-width="${w}" stroke-linecap="round" opacity="${op}">${anim}</path>`;
+  }
+  if(shape==='converge')out+=`<circle class="wave-dot" cx="${cx}" cy="${cy}" r="12" fill="#5ce5b7"/>`;
+  const par=shape==='converge'?'xMidYMid slice':'none';
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="${par}" aria-hidden="true">${out}</svg>`;
+});
+
+/* Појавување при скролање */
+const groups=['section:not(.hero) .tag','section:not(.hero) .hl-1','section:not(.hero) .lead','section:not(.hero) .card','section:not(.hero) .list li','.doc','.pills .pill','.info > div','.contact dl > *','#za-nas h3.hl-2'];
+const items=[];
+groups.forEach(sel=>document.querySelectorAll(sel).forEach(el=>{if(!el.classList.contains('reveal')){el.classList.add('reveal');items.push(el)}}));
+items.forEach(el=>{const sib=[...el.parentElement.children].filter(c=>c.classList.contains('reveal'));el.style.transitionDelay=Math.min(sib.indexOf(el),6)*90+'ms'});
+if('IntersectionObserver' in window&&!still){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);const t=e.target;setTimeout(()=>t.style.transitionDelay='',1400)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  items.forEach(el=>io.observe(el));
+}else items.forEach(el=>el.classList.add('in'));
+
+/* Бројачи: од 0 до бројката, секој пат кога ќе се појават или кога ќе кликнеш */
+function countUp(el){
+  const to=+el.dataset.count;if(still){el.textContent=to+'+';return}
+  if(el._raf)cancelAnimationFrame(el._raf);el.classList.remove('done');
+  const t0=performance.now(),d=1600+to*6;
+  const step=now=>{const p=Math.min((now-t0)/d,1),e=1-Math.pow(1-p,4);el.textContent=Math.round(to*e)+(p<1?'':'+');
+    if(p<1)el._raf=requestAnimationFrame(step);else{el.textContent=to+'+';el.classList.add('done')}};
+  el._raf=requestAnimationFrame(step);
+}
+const counters=document.querySelectorAll('[data-count]');
+counters.forEach(el=>el.textContent='0');
+if('IntersectionObserver' in window){
+  const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)setTimeout(()=>countUp(e.target),e.target.closest('.hero')&&!e.target._seen?800:0),e.target._seen=1}),{threshold:.7});
+  counters.forEach(el=>cio.observe(el));
+}else counters.forEach(countUp);
+document.querySelectorAll('.stat').forEach(st=>{const b=st.querySelector('[data-count]');const go=()=>countUp(b);st.addEventListener('click',go);st.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}})});
+
+/* Наслови збор по збор */
+function splitWords(root){
+  let i=0;
+  const walk=node=>{[...node.childNodes].forEach(n=>{
+    if(n.nodeType===3){
+      const frag=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(part=>{
+        if(!part)return;
+        if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return}
+        const w=document.createElement('span');w.className='w';const wi=document.createElement('span');wi.className='wi';wi.style.setProperty('--i',i++);wi.textContent=part;w.appendChild(wi);frag.appendChild(w);
+      });
+      n.replaceWith(frag);
+    }else if(n.nodeType===1&&!n.classList.contains('rotator')&&!n.classList.contains('w'))walk(n);
+    else if(n.nodeType===1&&n.classList.contains('rotator')){const w=document.createElement('span');w.className='w';const wi=document.createElement('span');wi.className='wi';wi.style.setProperty('--i',i++);n.replaceWith(w);wi.appendChild(n);w.appendChild(wi)}
+  })};
+  walk(root);
+}
+document.querySelectorAll('.hl-1').forEach(h=>{splitWords(h);h.classList.add('words')});
+const heroH=document.querySelector('.hl-hero');splitWords(heroH);
+requestAnimationFrame(()=>setTimeout(()=>heroH.classList.add('in'),80));
+
+/* Ротирачки збор во насловот */
+(function(){
+  const el=document.querySelector('.rot-text');if(!el||still)return;
+  const words=['секое ниво','секое село','секоја одлука','секој глас'];let wi=0;
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  (async()=>{await sleep(3200);
+    while(true){
+      const cur=words[wi];for(let k=cur.length;k>=0;k--){el.textContent=cur.slice(0,k);await sleep(45)}
+      wi=(wi+1)%words.length;const nx=words[wi];
+      for(let k=1;k<=nx.length;k++){el.textContent=nx.slice(0,k);await sleep(85)}
+      await sleep(2600);
+    }})();
+})();
+
+/* Избор на активност во центарот */
+const panel=document.querySelector('.pill-panel');
+document.querySelectorAll('.pick').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.pick').forEach(x=>x.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');
+  panel.querySelector('.pp-title').textContent=b.textContent;panel.querySelector('.pp-text').textContent=b.dataset.desc;
+  panel.classList.remove('swap');void panel.offsetWidth;panel.classList.add('swap');
+}));
+
+/* Заглавие, линија за напредок, копче назад горе */
+const hdr=document.querySelector('header'),prog=document.querySelector('.progress'),toTop=document.querySelector('.to-top'),ring=toTop.querySelector('.ring');
+function onScroll(){
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight,p=max>0?y/max:0;
+  hdr.classList.toggle('scrolled',y>40);prog.style.transform=`scaleX(${p})`;
+  toTop.classList.toggle('show',y>600);ring.style.strokeDashoffset=132*(1-p);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+toTop.addEventListener('click',()=>scrollTo({top:0,behavior:still?'auto':'smooth'}));
+
+/* Активен дел во менито + лизгачка линија */
+const ind=document.querySelector('.nav-ind'),links=[...menu.querySelectorAll('a:not(.btn)')];
+function moveInd(a){if(!a||innerWidth<=980){ind.style.opacity=0;return}ind.style.left=(a.offsetLeft+12)+'px';ind.style.width=(a.offsetWidth-24)+'px';ind.style.opacity=1}
+let current=null;
+links.forEach(a=>{a.addEventListener('mouseenter',()=>moveInd(a));a.addEventListener('focus',()=>moveInd(a))});
+menu.addEventListener('mouseleave',()=>moveInd(current));
+if('IntersectionObserver' in window){
+  const sio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const a=links.find(l=>l.getAttribute('href')==='#'+e.target.id);links.forEach(l=>l.classList.toggle('active',l===a));current=a||null;moveInd(current)}}),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('main section[id]').forEach(sec=>sio.observe(sec));
+}
+addEventListener('resize',()=>moveInd(current));
+
+/* Магнетни копчиња и паралакса во почетниот дел */
+if(!still&&matchMedia('(pointer:fine)').matches){
+  document.querySelectorAll('.magnetic').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});
+    b.addEventListener('pointerleave',()=>b.style.transform='');
+  });
+  const hero=document.querySelector('.hero');
+  hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();hero.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));hero.style.setProperty('--my',((e.clientY-r.top)/r.height-.5).toFixed(3))});
+  hero.addEventListener('pointerleave',()=>{hero.style.setProperty('--mx',0);hero.style.setProperty('--my',0)});
+}
+</script>
+</body>
+</html>
